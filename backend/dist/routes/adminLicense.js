@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const adminLicenseController_1 = require("../controllers/adminLicenseController");
+const authMiddleware_1 = require("../middleware/authMiddleware");
+const router = (0, express_1.Router)();
+router.post('/licenses', authMiddleware_1.requireAuth, authMiddleware_1.requireAdmin, adminLicenseController_1.createLicense);
+router.get('/licenses', authMiddleware_1.requireAuth, authMiddleware_1.requireAdmin, adminLicenseController_1.listAllLicenses);
+router.post('/licenses/revoke', authMiddleware_1.requireAuth, authMiddleware_1.requireAdmin, adminLicenseController_1.revokeLicense);
+exports.default = router;

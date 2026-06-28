@@ -1,0 +1,32 @@
+Di Terminal VS Code
+
+Tekan:
+
+Ctrl + C
+
+Lalu akan muncul pertanyaan seperti:
+
+Terminate batch job (Y/N)?
+
+Ketik:
+
+Y
+
+Lalu tekan Enter.
+
+Server akan berhenti dan prompt kembali menjadi seperti:
+
+PS C:\Users\ASUS\Documents\apexquant\frontend>
+Untuk menjalankan lagi
+
+Masuk ke folder frontend (kalau belum di sana):
+
+cd C:\Users\ASUS\Documents\apexquant\frontend
+
+Lalu jalankan:
+
+npm run dev
+
+Buka browser ke:
+
+http://localhost:3000

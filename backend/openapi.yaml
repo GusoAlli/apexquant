@@ -1,0 +1,312 @@
+openapi: 3.0.3
+info:
+  title: ApexQuant SaaS API
+  version: 1.0.0
+  description: API spec for ApexQuant SaaS (auth, subscriptions, licensing, MT5)
+servers:
+  - url: https://api.example.com/v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    RegisterRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        name:
+          type: string
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    GoogleLoginRequest:
+      type: object
+      required: [idToken]
+      properties:
+        idToken:
+          type: string
+    TokenResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+    Plan:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        priceCents:
+          type: integer
+        currency:
+          type: string
+        interval:
+          type: string
+        features:
+          type: object
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        planId:
+          type: string
+        status:
+          type: string
+        currentPeriodEnd:
+          type: string
+          format: date-time
+    License:
+      type: object
+      properties:
+        id:
+          type: string
+        licenseKey:
+          type: string
+        userId:
+          type: string
+        product:
+          type: string
+        maxActivations:
+          type: integer
+    MT5Account:
+      type: object
+      properties:
+        id:
+          type: string
+        accountNumber:
+          type: string
+        broker:
+          type: string
+        status:
+          type: string
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+  /api/auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /api/auth/google:
+    post:
+      summary: Login with Google
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleLoginRequest'
+      responses:
+        '200':
+          description: Tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /api/auth/refresh:
+    post:
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+      responses:
+        '200':
+          description: New tokens
+  /api/users/me:
+    get:
+      security:
+        - bearerAuth: []
+      summary: Get current user
+      responses:
+        '200':
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/plans:
+    get:
+      summary: List plans
+      responses:
+        '200':
+          description: Plans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plan'
+  /api/subscriptions/checkout:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create subscription checkout session
+      responses:
+        '201':
+          description: Checkout created
+  /api/webhooks/stripe:
+    post:
+      summary: Receive Stripe webhooks
+      responses:
+        '200':
+          description: OK
+  /api/licenses/activate:
+    post:
+      summary: Activate a license
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                licenseKey:
+                  type: string
+                metadata:
+                  type: object
+      responses:
+        '200':
+          description: License activated
+  /api/licenses/validate:
+    post:
+      summary: Validate license
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                licenseKey:
+                  type: string
+                instanceId:
+                  type: string
+      responses:
+        '200':
+          description: Valid/invalid response
+  /api/licenses/activate:
+    post:
+      summary: Activate a license
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [licenseKey, instanceId]
+              properties:
+                licenseKey:
+                  type: string
+                instanceId:
+                  type: string
+                metadata:
+                  type: object
+      responses:
+        '200':
+          description: License activated
+  /api/licenses:
+    get:
+      security:
+        - bearerAuth: []
+      summary: List user licenses
+      responses:
+        '200':
+          description: User licenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/License'
+  /api/mt5/connect:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Register / connect MT5 account
+      responses:
+        '201':
+          description: Connected
+  /api/admin/users:
+    get:
+      security:
+        - bearerAuth: []
+      summary: Admin list users
+      responses:
+        '200':
+          description: Users list
