@@ -1,93 +1,99 @@
-import BalanceCard from "@/components/dashboard/BalanceCard";
-import PerformanceCard from "@/components/dashboard/PerformanceCard";
-import StatsCard from "@/components/dashboard/StatsCard";
-import BrokerCard from "@/components/broker/BrokerCard";
-import BrokerStatus from "@/components/broker/BrokerStatus";
-import EquityCurve from "@/components/charts/EquityCurve";
-import CandlestickChart from "@/components/charts/CandlestickChart";
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  HeroSection, KpiBar, LiveTradeFeed, AiSignals,
+  MarketHeatmap, PerformanceOverview, TopStrategies, TopTraders,
+} from "@/components/dashboard/DashboardSections";
+import {
+  ForexHero, ForexKpiBar, MT5AccountsWidget, ForexMarketWatch,
+  ForexSignalFeed, OpenPositionsWidget, RiskSummary,
+} from "@/components/dashboard/ForexDashboardSections";
+import {
+  Web3Hero, Web3KpiBar, QuickSwapCard,
+  WalletPortfolioCard, Web3MarketPrices,
+  RecentPlatformSwaps, DeFiRoadmapCard,
+} from "@/components/dashboard/Web3DashboardSections";
+
+type Mode = "exchange" | "forex" | "web3";
 
 export default function DashboardPage() {
-  return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 px-6 py-8 xl:px-12">
-      <div className="mx-auto grid max-w-7xl gap-8 xl:grid-cols-[280px_1fr]">
-        <div className="hidden xl:block" />
+  const [mode, setMode] = useState<Mode | null>(null);
 
-        <section className="space-y-8">
-          <div className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-8 shadow-[0_20px_70px_-40px_rgba(0,0,0,0.8)] backdrop-blur-sm">
-            <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
-              <div>
-                <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Dashboard</p>
-                <h1 className="mt-3 text-3xl font-semibold text-white">Welcome back, John Trader</h1>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-                  Monitor strategy performance, active accounts, and EA status in a single place.
-                </p>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-3xl border border-white/10 bg-slate-950 px-6 py-4 text-sm text-slate-300">
-                  <p className="font-semibold text-white">Server Time</p>
-                  <p className="mt-2">18 May 2025 14:30:45 (UTC+0)</p>
-                </div>
-                <div className="rounded-3xl border border-white/10 bg-slate-950 px-6 py-4 text-sm text-slate-300">
-                  <p className="font-semibold text-white">Status</p>
-                  <p className="mt-2 text-emerald-300">All Systems Operational</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  useEffect(() => {
+    const saved = localStorage.getItem("aq_sidebar_mode");
+    if (saved === "forex" || saved === "web3") setMode(saved);
+    else setMode("exchange");
 
-          <div className="grid gap-6 lg:grid-cols-4">
-            <StatsCard />
-            <BalanceCard />
-            <PerformanceCard />
-            <div className="rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-[0_16px_50px_-35px_rgba(0,0,0,0.8)]">
-              <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Active Accounts</p>
-              <p className="mt-3 text-3xl font-semibold text-white">3/5</p>
-              <p className="mt-2 text-sm text-emerald-300">Active</p>
-            </div>
-          </div>
+    const handler = (e: Event) => setMode((e as CustomEvent<Mode>).detail);
+    window.addEventListener("aq-mode-change", handler);
+    return () => window.removeEventListener("aq-mode-change", handler);
+  }, []);
 
-          <div className="grid gap-6 xl:grid-cols-[1.7fr_1fr]">
-            <div className="space-y-6">
-              <EquityCurve />
-              <div className="rounded-[2rem] border border-white/10 bg-slate-900 p-6 shadow-[0_16px_50px_-35px_rgba(0,0,0,0.8)]">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Candlestick Chart</p>
-                    <p className="mt-2 text-lg font-semibold text-white">Recent market action</p>
-                  </div>
-                  <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300">EUR/USD</span>
-                </div>
-                <div className="mt-6">
-                  <CandlestickChart />
-                </div>
-              </div>
-              <BrokerStatus />
-            </div>
-            <div className="space-y-6">
-              <BrokerCard />
-              <div className="rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-[0_16px_50px_-35px_rgba(0,0,0,0.8)]">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Subscription</p>
-                    <p className="mt-2 text-lg font-semibold text-white">Pro Plan</p>
-                  </div>
-                  <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">Active</span>
-                </div>
-                <div className="mt-6 space-y-4 text-slate-100">
-                  <div className="rounded-3xl bg-slate-950 p-5">
-                    <p className="text-sm text-slate-400">Renews on</p>
-                    <p className="mt-1 text-xl font-semibold">26 Jan 2026</p>
-                    <p className="mt-2 text-sm text-slate-500">Accounts 3/5</p>
-                  </div>
-                  <button className="w-full rounded-3xl bg-yellow-500 px-5 py-3 text-sm font-semibold text-black transition hover:bg-yellow-400">
-                    Manage Subscription
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  if (!mode) return null;
+
+  // ── Web3 / DeFi dashboard ──────────────────────────────────────────────────
+  if (mode === "web3") {
+    return (
+      <div className="space-y-5 px-4 py-5 sm:px-6">
+        <Web3Hero />
+        <Web3KpiBar />
+
+        {/* Quick Swap | Portfolio | Market Prices */}
+        <div className="grid gap-5 xl:grid-cols-[1fr_1fr_1fr]">
+          <QuickSwapCard />
+          <WalletPortfolioCard />
+          <Web3MarketPrices />
+        </div>
+
+        {/* Recent Activity | DeFi Roadmap */}
+        <div className="grid gap-5 xl:grid-cols-[1fr_1.4fr]">
+          <RecentPlatformSwaps />
+          <DeFiRoadmapCard />
+        </div>
       </div>
-    </main>
+    );
+  }
+
+  // ── Forex / MT5 dashboard ──────────────────────────────────────────────────
+  if (mode === "forex") {
+    return (
+      <div className="space-y-5">
+        <ForexHero />
+        <ForexKpiBar />
+
+        <div className="grid gap-5 xl:grid-cols-[2fr_1fr_1fr]">
+          <PerformanceOverview />
+          <MT5AccountsWidget />
+          <RiskSummary />
+        </div>
+
+        <div className="grid gap-5 xl:grid-cols-[1fr_1.4fr_1fr]">
+          <OpenPositionsWidget />
+          <ForexSignalFeed />
+          <ForexMarketWatch />
+        </div>
+      </div>
+    );
+  }
+
+  // ── Exchange / CEX dashboard ───────────────────────────────────────────────
+  return (
+    <div className="space-y-5">
+      <HeroSection />
+      <KpiBar />
+
+      <div className="grid gap-5 xl:grid-cols-[2fr_1fr_1fr]">
+        <PerformanceOverview />
+        <TopStrategies />
+        <TopTraders />
+      </div>
+
+      <div className="grid gap-5 xl:grid-cols-[1fr_1.6fr_1fr]">
+        <LiveTradeFeed />
+        <AiSignals />
+        <MarketHeatmap />
+      </div>
+    </div>
   );
 }

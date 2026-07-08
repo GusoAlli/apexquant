@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "portfolio": "Portfolio",
+    "liveTrades": "Live Trades",
+    "trading": "Trading",
+    "aiSignals": "AI Signals",
+    "strategies": "Strategies",
+    "engine": "Engine",
+    "backtest": "Backtest",
+    "analytics": "Analytics",
+    "market": "Market",
+    "accounts": "Accounts",
+    "fundingFee": "Funding Fee",
+    "apiKeys": "API Keys",
+    "subscription": "Subscription",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "bot": "Bot",
+    "riskManagement": "Risk Management",
+    "signOut": "Sign Out"
+  },
+  "navGroup": {
+    "intelligence": "Intelligence",
+    "exchange": "Exchange",
+    "forexCfd": "Forex / CFD",
+    "account": "Account"
+  },
+  "mode": {
+    "exchange": "Exchange",
+    "forex": "Forex",
+    "cryptoExchange": "Crypto Exchange",
+    "forexCfd": "Forex / CFD"
+  },
+  "topbar": {
+    "marketOpen": "Market is Open",
+    "marketClosed": "Market is Closed",
+    "profileSettings": "Profile & Settings",
+    "subscriptionBilling": "Subscription & Billing",
+    "signOut": "Sign Out",
+    "language": "Language",
+    "notifications": "Notifications"
+  },
+  "marketing": {
+    "platform": "Platform",
+    "products": "Products",
+    "pricing": "Pricing",
+    "performance": "Performance",
+    "resources": "Resources",
+    "login": "Login",
+    "getStarted": "Get Started",
+    "profile": "Profile"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading…",
+    "error": "Error",
+    "refresh": "Refresh",
+    "comingSoon": "Coming Soon",
+    "running": "Running",
+    "stopped": "Stopped",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "delete": "Delete",
+    "edit": "Edit",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "buy": "Buy",
+    "sell": "Sell",
+    "noData": "No data available",
+    "learnMore": "Learn More",
+    "upgradeNow": "Upgrade Now",
+    "institutional": "Institutional"
+  }
+}

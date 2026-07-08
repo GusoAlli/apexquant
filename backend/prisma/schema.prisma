@@ -3,27 +3,59 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id           String    @id @default(uuid())
-  email        String    @unique
-  passwordHash String?
-  name         String?
-  provider     String?
-  providerId   String?
-  role         Role      @relation(fields: [roleId], references: [id])
-  roleId       Int
-  isActive     Boolean   @default(true)
-  sessions     Session[]
-  subscriptions Subscription[]
-  payments     Payment[]
-  licenses     License[]
-  mt5Accounts  MT5Account[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id                  String               @id @default(uuid())
+  email               String               @unique
+  passwordHash        String?
+  name                String?
+  provider            String?
+  providerId          String?
+  role                Role                 @relation(fields: [roleId], references: [id])
+  roleId              Int
+  isActive            Boolean              @default(true)
+  isVerified          Boolean              @default(false)
+  avatarUrl           String?
+  sessions            Session[]
+  subscriptions       Subscription[]
+  payments            Payment[]
+  licenses            License[]
+  mt5Accounts         MT5Account[]
+  mt5Tokens           MT5Token[]
+  apiKeys             ApiKey[]
+  notifications       Notification[]
+  emailVerifications  EmailVerification[]
+  passwordResets      PasswordReset[]
+  brokerAccounts      BrokerAccount[]
+  botConfig           BotConfig?
+  strategies          Strategy[]
+  fundingPositions    FundingPosition[]
+  onboardingComplete  Boolean              @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+}
+
+model EmailVerification {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model PasswordReset {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
 }
 
 model Role {
@@ -54,6 +86,9 @@ model Plan {
   interval      String
   features      String?
   stripePriceId String?
+  paddlePriceId String?
+  priceIdr      Int?
+  priceUsdt     Float?
   subscriptions Subscription[]
 }
 
@@ -63,7 +98,10 @@ model Subscription {
   userId            String
   plan              Plan     @relation(fields: [planId], references: [id])
   planId            String
+  provider          String   @default("stripe")  // stripe | xendit | paddle | crypto
   stripeSubId       String?  @unique
+  xenditInvoiceId   String?  @unique
+  paddleSubId       String?  @unique
   status            String
   currentPeriodEnd  DateTime?
   cancelAtPeriodEnd Boolean  @default(false)
@@ -74,7 +112,9 @@ model Payment {
   id              String   @id @default(uuid())
   user            User?    @relation(fields: [userId], references: [id])
   userId          String?
+  provider        String   @default("stripe")  // stripe | xendit | crypto
   stripePaymentId String?  @unique
+  xenditPaymentId String?  @unique
   amountCents     Int
   currency        String
   status          String
@@ -106,6 +146,54 @@ model LicenseActivation {
   @@unique([licenseId, instanceId])
 }
 
+model Notification {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  type      String
+  title     String
+  body      String
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model Signal {
+  id          String    @id @default(uuid())
+  pair        String
+  direction   String
+  entry       Float
+  tp          Float
+  sl          Float
+  strength    Int
+  timeframe   String
+  model       String
+  status      String    @default("ACTIVE")
+  pips        Float?
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model ApiKey {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  name      String
+  keyHash   String    @unique
+  keyPrefix String
+  lastUsed  DateTime?
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model MT5Token {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  tokenHash String   @unique
+  createdAt DateTime @default(now())
+}
+
 model MT5Account {
   id           String    @id @default(uuid())
   user         User      @relation(fields: [userId], references: [id])
@@ -128,6 +216,32 @@ model MT5Metric {
   positions    String?
 }
 
+model BrokerAccount {
+  id          String          @id @default(uuid())
+  user        User            @relation(fields: [userId], references: [id])
+  userId      String
+  type        String          // binance | okx | bybit | hyperliquid | mt5 | mt4
+  label       String
+  credentials String?         // AES-256-GCM encrypted JSON
+  status      String          @default("pending") // pending | active | error | disconnected
+  errorMsg    String?
+  lastSync    DateTime?
+  balances    BrokerBalance[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model BrokerBalance {
+  id         String        @id @default(uuid())
+  account    BrokerAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  accountId  String
+  asset      String
+  free       Float         @default(0)
+  locked     Float         @default(0)
+  usdValue   Float?
+  snapshotAt DateTime      @default(now())
+}
+
 model AuditLog {
   id           String   @id @default(uuid())
   userId       String?
@@ -136,6 +250,81 @@ model AuditLog {
   resourceId   String?
   ip           String?
   createdAt    DateTime @default(now())
+}
+
+model BotConfig {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id])
+  enabled          Boolean  @default(false)
+  symbols          String   @default("[\"EURUSD\",\"GBPUSD\",\"XAUUSD\"]")
+  riskPerTrade     Float    @default(1.0)
+  maxDailyLoss     Float    @default(3.0)
+  maxDrawdown      Float    @default(10.0)
+  maxOpenPositions Int      @default(3)
+  minRR            Float    @default(1.5)
+  lotSize          Float    @default(0.01)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model BotTrade {
+  id         String    @id @default(uuid())
+  userId     String
+  signalId   String?
+  ticket     Int?
+  symbol     String
+  action     String
+  volume     Float
+  openPrice  Float
+  sl         Float
+  tp         Float
+  closePrice Float?
+  pnl        Float?
+  status     String    @default("open")
+  error      String?
+  openedAt   DateTime  @default(now())
+  closedAt   DateTime?
+}
+
+model Strategy {
+  id          String   @id @default(uuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  name        String
+  description String?
+  symbol      String
+  timeframe   String
+  type        String   @default("manual")   // manual | bot | ai
+  status      String   @default("draft")    // draft | active | paused
+  mode        String   @default("exchange") // exchange | forex
+  config      String?  // JSON stringified
+  performance String?  // JSON: last backtest results
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FundingPosition {
+  id               String    @id @default(uuid())
+  user             User      @relation(fields: [userId], references: [id])
+  userId           String
+  symbol           String
+  direction        String    // short_futures_long_spot | long_futures_short_spot
+  notional         Float
+  entryRate        Float
+  entrySpotPrice   Float
+  entryFutPrice    Float
+  leverage         Float     @default(3)
+  cyclesTarget     Int       @default(0)
+  cyclesCollected  Int       @default(0)
+  fundingCollected Float     @default(0)
+  feesTotal        Float     @default(0)
+  netPnl           Float     @default(0)
+  status           String    @default("open")
+  note             String?
+  openedAt         DateTime  @default(now())
+  closedAt         DateTime?
+  updatedAt        DateTime  @updatedAt
 }
 
 // Indexes and additional tuning can be added later (GIN on JSON, partitions for metrics)

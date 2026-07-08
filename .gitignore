@@ -1,0 +1,36 @@
+# Environment variables — NEVER commit secrets
+backend/.env
+frontend/.env.local
+frontend/.env*.local
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+backend/dist/
+frontend/.next/
+frontend/out/
+
+# Database
+backend/prisma/dev.db
+backend/prisma/*.db
+backend/prisma/*.db-journal
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Uploads
+uploads/

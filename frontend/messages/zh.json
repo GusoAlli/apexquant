@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "仪表盘",
+    "portfolio": "投资组合",
+    "liveTrades": "实时交易",
+    "trading": "交易",
+    "aiSignals": "AI 信号",
+    "strategies": "策略",
+    "engine": "引擎",
+    "backtest": "回测",
+    "analytics": "分析",
+    "market": "市场",
+    "accounts": "账户",
+    "fundingFee": "资金费率",
+    "apiKeys": "API 密钥",
+    "subscription": "订阅",
+    "notifications": "通知",
+    "settings": "设置",
+    "bot": "机器人",
+    "riskManagement": "风险管理",
+    "signOut": "退出登录"
+  },
+  "navGroup": {
+    "intelligence": "智能",
+    "exchange": "交易所",
+    "forexCfd": "外汇 / CFD",
+    "account": "账户"
+  },
+  "mode": {
+    "exchange": "交易所",
+    "forex": "外汇",
+    "cryptoExchange": "加密货币交易所",
+    "forexCfd": "外汇 / CFD"
+  },
+  "topbar": {
+    "marketOpen": "市场开放",
+    "marketClosed": "市场关闭",
+    "profileSettings": "个人资料与设置",
+    "subscriptionBilling": "订阅与账单",
+    "signOut": "退出登录",
+    "language": "语言",
+    "notifications": "通知"
+  },
+  "marketing": {
+    "platform": "平台",
+    "products": "产品",
+    "pricing": "定价",
+    "performance": "绩效",
+    "resources": "资源",
+    "login": "登录",
+    "getStarted": "立即开始",
+    "profile": "个人资料"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "loading": "加载中…",
+    "error": "错误",
+    "refresh": "刷新",
+    "comingSoon": "即将推出",
+    "running": "运行中",
+    "stopped": "已停止",
+    "enabled": "已启用",
+    "disabled": "已禁用",
+    "connect": "连接",
+    "disconnect": "断开",
+    "delete": "删除",
+    "edit": "编辑",
+    "confirm": "确认",
+    "back": "返回",
+    "next": "下一步",
+    "submit": "提交",
+    "search": "搜索",
+    "filter": "筛选",
+    "all": "全部",
+    "buy": "买入",
+    "sell": "卖出",
+    "noData": "暂无数据",
+    "learnMore": "了解更多",
+    "upgradeNow": "立即升级",
+    "institutional": "机构版"
+  }
+}

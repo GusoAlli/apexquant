@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "대시보드",
+    "portfolio": "포트폴리오",
+    "liveTrades": "라이브 거래",
+    "trading": "트레이딩",
+    "aiSignals": "AI 시그널",
+    "strategies": "전략",
+    "engine": "엔진",
+    "backtest": "백테스트",
+    "analytics": "분석",
+    "market": "시장",
+    "accounts": "계좌",
+    "fundingFee": "펀딩 수수료",
+    "apiKeys": "API 키",
+    "subscription": "구독",
+    "notifications": "알림",
+    "settings": "설정",
+    "bot": "봇",
+    "riskManagement": "리스크 관리",
+    "signOut": "로그아웃"
+  },
+  "navGroup": {
+    "intelligence": "인텔리전스",
+    "exchange": "거래소",
+    "forexCfd": "FX / CFD",
+    "account": "계정"
+  },
+  "mode": {
+    "exchange": "거래소",
+    "forex": "FX",
+    "cryptoExchange": "암호화폐 거래소",
+    "forexCfd": "FX / CFD"
+  },
+  "topbar": {
+    "marketOpen": "시장 개장",
+    "marketClosed": "시장 폐장",
+    "profileSettings": "프로필 및 설정",
+    "subscriptionBilling": "구독 및 결제",
+    "signOut": "로그아웃",
+    "language": "언어",
+    "notifications": "알림"
+  },
+  "marketing": {
+    "platform": "플랫폼",
+    "products": "제품",
+    "pricing": "가격",
+    "performance": "성과",
+    "resources": "리소스",
+    "login": "로그인",
+    "getStarted": "시작하기",
+    "profile": "프로필"
+  },
+  "common": {
+    "save": "저장",
+    "cancel": "취소",
+    "loading": "로딩 중…",
+    "error": "오류",
+    "refresh": "새로고침",
+    "comingSoon": "곧 출시",
+    "running": "실행 중",
+    "stopped": "중지됨",
+    "enabled": "활성화",
+    "disabled": "비활성화",
+    "connect": "연결",
+    "disconnect": "연결 해제",
+    "delete": "삭제",
+    "edit": "편집",
+    "confirm": "확인",
+    "back": "뒤로",
+    "next": "다음",
+    "submit": "제출",
+    "search": "검색",
+    "filter": "필터",
+    "all": "전체",
+    "buy": "매수",
+    "sell": "매도",
+    "noData": "데이터 없음",
+    "learnMore": "자세히 알아보기",
+    "upgradeNow": "지금 업그레이드",
+    "institutional": "기관용"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Панель управления",
+    "portfolio": "Портфель",
+    "liveTrades": "Сделки в реальном времени",
+    "trading": "Торговля",
+    "aiSignals": "Сигналы ИИ",
+    "strategies": "Стратегии",
+    "engine": "Движок",
+    "backtest": "Бэктест",
+    "analytics": "Аналитика",
+    "market": "Рынок",
+    "accounts": "Счета",
+    "fundingFee": "Ставка финансирования",
+    "apiKeys": "API-ключи",
+    "subscription": "Подписка",
+    "notifications": "Уведомления",
+    "settings": "Настройки",
+    "bot": "Бот",
+    "riskManagement": "Управление рисками",
+    "signOut": "Выйти"
+  },
+  "navGroup": {
+    "intelligence": "Интеллект",
+    "exchange": "Биржа",
+    "forexCfd": "Forex / CFD",
+    "account": "Аккаунт"
+  },
+  "mode": {
+    "exchange": "Биржа",
+    "forex": "Forex",
+    "cryptoExchange": "Крипто-биржа",
+    "forexCfd": "Forex / CFD"
+  },
+  "topbar": {
+    "marketOpen": "Рынок открыт",
+    "marketClosed": "Рынок закрыт",
+    "profileSettings": "Профиль и настройки",
+    "subscriptionBilling": "Подписка и оплата",
+    "signOut": "Выйти",
+    "language": "Язык",
+    "notifications": "Уведомления"
+  },
+  "marketing": {
+    "platform": "Платформа",
+    "products": "Продукты",
+    "pricing": "Цены",
+    "performance": "Производительность",
+    "resources": "Ресурсы",
+    "login": "Войти",
+    "getStarted": "Начать",
+    "profile": "Профиль"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "loading": "Загрузка…",
+    "error": "Ошибка",
+    "refresh": "Обновить",
+    "comingSoon": "Скоро",
+    "running": "Работает",
+    "stopped": "Остановлен",
+    "enabled": "Включён",
+    "disabled": "Отключён",
+    "connect": "Подключить",
+    "disconnect": "Отключить",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "confirm": "Подтвердить",
+    "back": "Назад",
+    "next": "Далее",
+    "submit": "Отправить",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "all": "Все",
+    "buy": "Купить",
+    "sell": "Продать",
+    "noData": "Нет данных",
+    "learnMore": "Узнать больше",
+    "upgradeNow": "Обновить сейчас",
+    "institutional": "Для институций"
+  }
+}

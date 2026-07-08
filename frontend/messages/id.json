@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Dasbor",
+    "portfolio": "Portofolio",
+    "liveTrades": "Perdagangan Langsung",
+    "trading": "Trading",
+    "aiSignals": "Sinyal AI",
+    "strategies": "Strategi",
+    "engine": "Mesin",
+    "backtest": "Backtest",
+    "analytics": "Analitik",
+    "market": "Pasar",
+    "accounts": "Akun",
+    "fundingFee": "Biaya Pendanaan",
+    "apiKeys": "Kunci API",
+    "subscription": "Langganan",
+    "notifications": "Notifikasi",
+    "settings": "Pengaturan",
+    "bot": "Bot",
+    "riskManagement": "Manajemen Risiko",
+    "signOut": "Keluar"
+  },
+  "navGroup": {
+    "intelligence": "Intelijen",
+    "exchange": "Bursa",
+    "forexCfd": "Forex / CFD",
+    "account": "Akun"
+  },
+  "mode": {
+    "exchange": "Bursa",
+    "forex": "Forex",
+    "cryptoExchange": "Bursa Kripto",
+    "forexCfd": "Forex / CFD"
+  },
+  "topbar": {
+    "marketOpen": "Pasar Terbuka",
+    "marketClosed": "Pasar Tutup",
+    "profileSettings": "Profil & Pengaturan",
+    "subscriptionBilling": "Langganan & Tagihan",
+    "signOut": "Keluar",
+    "language": "Bahasa",
+    "notifications": "Notifikasi"
+  },
+  "marketing": {
+    "platform": "Platform",
+    "products": "Produk",
+    "pricing": "Harga",
+    "performance": "Performa",
+    "resources": "Sumber Daya",
+    "login": "Masuk",
+    "getStarted": "Mulai Sekarang",
+    "profile": "Profil"
+  },
+  "common": {
+    "save": "Simpan",
+    "cancel": "Batal",
+    "loading": "Memuat…",
+    "error": "Kesalahan",
+    "refresh": "Segarkan",
+    "comingSoon": "Segera Hadir",
+    "running": "Berjalan",
+    "stopped": "Berhenti",
+    "enabled": "Aktif",
+    "disabled": "Nonaktif",
+    "connect": "Hubungkan",
+    "disconnect": "Putuskan",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "confirm": "Konfirmasi",
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "submit": "Kirim",
+    "search": "Cari",
+    "filter": "Filter",
+    "all": "Semua",
+    "buy": "Beli",
+    "sell": "Jual",
+    "noData": "Tidak ada data",
+    "learnMore": "Pelajari Lebih",
+    "upgradeNow": "Upgrade Sekarang",
+    "institutional": "Institusional"
+  }
+}

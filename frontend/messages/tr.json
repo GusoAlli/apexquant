@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Kontrol Paneli",
+    "portfolio": "Portföy",
+    "liveTrades": "Canlı İşlemler",
+    "trading": "Ticaret",
+    "aiSignals": "AI Sinyalleri",
+    "strategies": "Stratejiler",
+    "engine": "Motor",
+    "backtest": "Backtest",
+    "analytics": "Analitik",
+    "market": "Piyasa",
+    "accounts": "Hesaplar",
+    "fundingFee": "Fonlama Ücreti",
+    "apiKeys": "API Anahtarları",
+    "subscription": "Abonelik",
+    "notifications": "Bildirimler",
+    "settings": "Ayarlar",
+    "bot": "Bot",
+    "riskManagement": "Risk Yönetimi",
+    "signOut": "Çıkış Yap"
+  },
+  "navGroup": {
+    "intelligence": "Zeka",
+    "exchange": "Borsa",
+    "forexCfd": "Forex / CFD",
+    "account": "Hesap"
+  },
+  "mode": {
+    "exchange": "Borsa",
+    "forex": "Forex",
+    "cryptoExchange": "Kripto Borsası",
+    "forexCfd": "Forex / CFD"
+  },
+  "topbar": {
+    "marketOpen": "Piyasa Açık",
+    "marketClosed": "Piyasa Kapalı",
+    "profileSettings": "Profil ve Ayarlar",
+    "subscriptionBilling": "Abonelik ve Faturalama",
+    "signOut": "Çıkış Yap",
+    "language": "Dil",
+    "notifications": "Bildirimler"
+  },
+  "marketing": {
+    "platform": "Platform",
+    "products": "Ürünler",
+    "pricing": "Fiyatlandırma",
+    "performance": "Performans",
+    "resources": "Kaynaklar",
+    "login": "Giriş Yap",
+    "getStarted": "Başla",
+    "profile": "Profil"
+  },
+  "common": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "loading": "Yükleniyor…",
+    "error": "Hata",
+    "refresh": "Yenile",
+    "comingSoon": "Yakında",
+    "running": "Çalışıyor",
+    "stopped": "Durduruldu",
+    "enabled": "Etkin",
+    "disabled": "Devre Dışı",
+    "connect": "Bağlan",
+    "disconnect": "Bağlantıyı Kes",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "confirm": "Onayla",
+    "back": "Geri",
+    "next": "İleri",
+    "submit": "Gönder",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "all": "Tümü",
+    "buy": "Al",
+    "sell": "Sat",
+    "noData": "Veri yok",
+    "learnMore": "Daha fazla bilgi",
+    "upgradeNow": "Şimdi Yükselt",
+    "institutional": "Kurumsal"
+  }
+}

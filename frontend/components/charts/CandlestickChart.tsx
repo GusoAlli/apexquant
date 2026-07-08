@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
-import { createChart, IChartApi, CandlestickData } from "lightweight-charts";
+import { CandlestickSeries, createChart, CandlestickData } from "lightweight-charts";
 
 const candlestickData: CandlestickData[] = [
   { time: "2024-06-01", open: 1.0650, high: 1.0685, low: 1.0615, close: 1.0668 },
@@ -31,12 +31,12 @@ export default function CandlestickChart() {
       width: chartRef.current.clientWidth,
       height: 320,
       layout: {
-        background: { color: "#020207" },
+        background: { color: "transparent" },
         textColor: "#cbd5e1",
       },
       grid: {
-        vertLines: { color: "rgba(148, 163, 184, 0.08)" },
-        horzLines: { color: "rgba(148, 163, 184, 0.08)" },
+        vertLines: { color: "rgba(255, 255, 255, 0.04)" },
+        horzLines: { color: "rgba(255, 255, 255, 0.05)" },
       },
       rightPriceScale: {
         borderVisible: false,
@@ -46,15 +46,15 @@ export default function CandlestickChart() {
         timeVisible: true,
       },
       crosshair: {
-        vertLine: { color: "rgba(148, 163, 184, 0.08)" },
-        horzLine: { color: "rgba(148, 163, 184, 0.08)" },
+        vertLine: { color: "rgba(59, 130, 246, 0.24)" },
+        horzLine: { color: "rgba(59, 130, 246, 0.24)" },
       },
       localization: {
         priceFormatter: (price: number) => price.toFixed(4),
       },
     });
 
-    const candleSeries = (chartInstance.current as IChartApi).addCandlestickSeries({
+    const candleSeries = chartInstance.current.addSeries(CandlestickSeries, {
       upColor: "#22c55e",
       downColor: "#ef4444",
       borderDownColor: "#ef4444",
@@ -78,5 +78,5 @@ export default function CandlestickChart() {
     };
   }, []);
 
-  return <div ref={chartRef} className="h-[320px] w-full rounded-[1.5rem] bg-slate-950" />;
+  return <div ref={chartRef} className="h-[320px] w-full rounded-lg bg-[#07090d]/70" />;
 }

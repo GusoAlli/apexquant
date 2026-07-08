@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "डैशबोर्ड",
+    "portfolio": "पोर्टफोलियो",
+    "liveTrades": "लाइव ट्रेड",
+    "trading": "ट्रेडिंग",
+    "aiSignals": "AI सिग्नल",
+    "strategies": "रणनीतियाँ",
+    "engine": "इंजन",
+    "backtest": "बैकटेस्ट",
+    "analytics": "विश्लेषण",
+    "market": "बाज़ार",
+    "accounts": "खाते",
+    "fundingFee": "फंडिंग शुल्क",
+    "apiKeys": "API कुंजियाँ",
+    "subscription": "सदस्यता",
+    "notifications": "सूचनाएं",
+    "settings": "सेटिंग्स",
+    "bot": "बॉट",
+    "riskManagement": "जोखिम प्रबंधन",
+    "signOut": "साइन आउट"
+  },
+  "navGroup": {
+    "intelligence": "इंटेलिजेंस",
+    "exchange": "एक्सचेंज",
+    "forexCfd": "Forex / CFD",
+    "account": "खाता"
+  },
+  "mode": {
+    "exchange": "एक्सचेंज",
+    "forex": "Forex",
+    "cryptoExchange": "क्रिप्टो एक्सचेंज",
+    "forexCfd": "Forex / CFD"
+  },
+  "topbar": {
+    "marketOpen": "बाज़ार खुला",
+    "marketClosed": "बाज़ार बंद",
+    "profileSettings": "प्रोफ़ाइल और सेटिंग्स",
+    "subscriptionBilling": "सदस्यता और बिलिंग",
+    "signOut": "साइन आउट",
+    "language": "भाषा",
+    "notifications": "सूचनाएं"
+  },
+  "marketing": {
+    "platform": "प्लेटफॉर्म",
+    "products": "उत्पाद",
+    "pricing": "मूल्य निर्धारण",
+    "performance": "प्रदर्शन",
+    "resources": "संसाधन",
+    "login": "लॉग इन",
+    "getStarted": "शुरू करें",
+    "profile": "प्रोफ़ाइल"
+  },
+  "common": {
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "loading": "लोड हो रहा है…",
+    "error": "त्रुटि",
+    "refresh": "ताज़ा करें",
+    "comingSoon": "जल्द आ रहा है",
+    "running": "चल रहा है",
+    "stopped": "रोका गया",
+    "enabled": "सक्षम",
+    "disabled": "अक्षम",
+    "connect": "कनेक्ट करें",
+    "disconnect": "डिस्कनेक्ट करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "confirm": "पुष्टि करें",
+    "back": "वापस",
+    "next": "अगला",
+    "submit": "सबमिट करें",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "all": "सभी",
+    "buy": "खरीदें",
+    "sell": "बेचें",
+    "noData": "कोई डेटा नहीं",
+    "learnMore": "और जानें",
+    "upgradeNow": "अभी अपग्रेड करें",
+    "institutional": "संस्थागत"
+  }
+}

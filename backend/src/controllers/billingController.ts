@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Stripe from 'stripe';
 import prisma from '../lib/prisma';
+import { paddlePost } from '../lib/paddleClient';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET || '', { apiVersion: '2022-11-15' });
 
@@ -9,7 +10,7 @@ async function upsertSubscriptionFromStripe(sub: Stripe.Subscription, userIdFrom
   const priceId = sub.items.data[0]?.price?.id;
   if (!priceId) return;
 
-  const plan = await prisma.plan.findUnique({ where: { stripePriceId: priceId } });
+  const plan = await prisma.plan.findFirst({ where: { stripePriceId: priceId } });
   if (!plan) {
     console.warn('Plan not found for priceId', priceId);
     return;
@@ -45,14 +46,76 @@ async function upsertSubscriptionFromStripe(sub: Stripe.Subscription, userIdFrom
   });
 }
 
+export async function getPlans(req: Request, res: Response) {
+  const plans = await prisma.plan.findMany({
+    where: { slug: { not: 'free' } },
+    orderBy: { priceCents: 'asc' },
+  });
+  return res.json(plans);
+}
+
+export async function getMySubscription(req: Request, res: Response) {
+  const userId = (req as any).userId;
+  if (!userId) return res.status(401).json({ message: 'unauthenticated' });
+
+  const sub = await prisma.subscription.findFirst({
+    where: { userId, status: { in: ['active', 'trialing'] } },
+    orderBy: { createdAt: 'desc' },
+    include: { plan: true },
+  });
+
+  return res.json(sub ?? null);
+}
+
+export async function cancelMySubscription(req: Request, res: Response) {
+  const userId = (req as any).userId;
+  if (!userId) return res.status(401).json({ message: 'unauthenticated' });
+
+  const sub = await prisma.subscription.findFirst({
+    where: { userId, status: 'active' },
+    orderBy: { createdAt: 'desc' },
+  });
+
+  if (!sub) return res.status(404).json({ message: 'No active subscription found' });
+
+  if (sub.stripeSubId) {
+    try {
+      await stripe.subscriptions.update(sub.stripeSubId, { cancel_at_period_end: true });
+    } catch (err: any) {
+      console.error('Stripe cancel error:', err?.message);
+      return res.status(502).json({ message: 'Failed to cancel with payment provider. Please try again.' });
+    }
+  } else if (sub.paddleSubId && process.env.PADDLE_API_KEY) {
+    try {
+      await paddlePost(`/subscriptions/${sub.paddleSubId}/cancel`, { effective_from: 'next_billing_period' });
+    } catch (err: any) {
+      console.error('Paddle cancel error:', err?.message);
+      return res.status(502).json({ message: 'Failed to cancel with payment provider. Please try again.' });
+    }
+  }
+
+  await prisma.subscription.update({
+    where: { id: sub.id },
+    data: { cancelAtPeriodEnd: true },
+  });
+
+  return res.json({ message: 'Subscription will cancel at end of the current billing period' });
+}
+
 export async function createCheckoutSession(req: Request, res: Response) {
   const userId = (req as any).userId;
   const { planId } = req.body;
   if (!userId) return res.status(401).json({ message: 'unauthenticated' });
   if (!planId) return res.status(400).json({ message: 'planId required' });
 
+  if (!process.env.STRIPE_SECRET) {
+    return res.status(503).json({ message: 'Payment gateway not configured. Please contact support.' });
+  }
+
   const plan = await prisma.plan.findUnique({ where: { id: planId } });
-  if (!plan || !plan.stripePriceId) return res.status(400).json({ message: 'invalid plan' });
+  if (!plan || !plan.stripePriceId) {
+    return res.status(400).json({ message: 'Selected plan is not available for purchase. Please contact support.' });
+  }
 
   const domain = process.env.FRONTEND_URL || 'http://localhost:3000';
 
@@ -60,9 +123,9 @@ export async function createCheckoutSession(req: Request, res: Response) {
     mode: 'subscription',
     payment_method_types: ['card'],
     line_items: [{ price: plan.stripePriceId, quantity: 1 }],
-    success_url: `${domain}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${domain}/pricing`,
-    metadata: { userId }
+    success_url: `${domain}/dashboard/licenses?success=1`,
+    cancel_url: `${domain}/dashboard/licenses`,
+    metadata: { userId },
   });
 
   return res.status(201).json({ url: session.url });

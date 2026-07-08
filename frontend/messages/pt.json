@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Painel",
+    "portfolio": "Portfólio",
+    "liveTrades": "Operações ao Vivo",
+    "trading": "Trading",
+    "aiSignals": "Sinais de IA",
+    "strategies": "Estratégias",
+    "engine": "Motor",
+    "backtest": "Backtest",
+    "analytics": "Análises",
+    "market": "Mercado",
+    "accounts": "Contas",
+    "fundingFee": "Taxa de Financiamento",
+    "apiKeys": "Chaves API",
+    "subscription": "Assinatura",
+    "notifications": "Notificações",
+    "settings": "Configurações",
+    "bot": "Bot",
+    "riskManagement": "Gestão de Risco",
+    "signOut": "Sair"
+  },
+  "navGroup": {
+    "intelligence": "Inteligência",
+    "exchange": "Exchange",
+    "forexCfd": "Forex / CFD",
+    "account": "Conta"
+  },
+  "mode": {
+    "exchange": "Exchange",
+    "forex": "Forex",
+    "cryptoExchange": "Exchange Cripto",
+    "forexCfd": "Forex / CFD"
+  },
+  "topbar": {
+    "marketOpen": "Mercado Aberto",
+    "marketClosed": "Mercado Fechado",
+    "profileSettings": "Perfil e Configurações",
+    "subscriptionBilling": "Assinatura e Faturamento",
+    "signOut": "Sair",
+    "language": "Idioma",
+    "notifications": "Notificações"
+  },
+  "marketing": {
+    "platform": "Plataforma",
+    "products": "Produtos",
+    "pricing": "Preços",
+    "performance": "Desempenho",
+    "resources": "Recursos",
+    "login": "Entrar",
+    "getStarted": "Começar",
+    "profile": "Perfil"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "loading": "Carregando…",
+    "error": "Erro",
+    "refresh": "Atualizar",
+    "comingSoon": "Em breve",
+    "running": "Em execução",
+    "stopped": "Parado",
+    "enabled": "Habilitado",
+    "disabled": "Desabilitado",
+    "connect": "Conectar",
+    "disconnect": "Desconectar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "confirm": "Confirmar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "submit": "Enviar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "buy": "Comprar",
+    "sell": "Vender",
+    "noData": "Sem dados disponíveis",
+    "learnMore": "Saiba mais",
+    "upgradeNow": "Atualizar agora",
+    "institutional": "Institucional"
+  }
+}

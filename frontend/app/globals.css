@@ -9,13 +9,22 @@ html {
 }
 
 body {
-  background: #000;
+  background: #020912;
   color: white;
 }
 
+/* Hide scrollbars globally while keeping scroll functionality */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
 @theme inline {
-  --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -57,38 +66,38 @@ body {
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: #020912;
+  --foreground: #f8fafc;
+  --card: rgba(7, 17, 29, 0.78);
+  --card-foreground: #f8fafc;
+  --popover: #0b1018;
+  --popover-foreground: #f8fafc;
+  --primary: #e7b949;
+  --primary-foreground: #110b02;
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #e2e8f0;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #94a3b8;
+  --accent: rgba(231, 185, 73, 0.16);
+  --accent-foreground: #f8d983;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.05);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(231, 185, 73, 0.45);
+  --chart-1: #00a7ff;
+  --chart-2: #22c55e;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #e7b949;
+  --radius: 0.5rem;
+  --sidebar: rgba(3, 10, 18, 0.92);
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-primary: #e7b949;
+  --sidebar-primary-foreground: #110b02;
+  --sidebar-accent: rgba(255, 255, 255, 0.06);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-ring: rgba(231, 185, 73, 0.45);
 }
 
 .dark {
@@ -134,5 +143,30 @@ body {
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .apex-surface {
+    @apply border border-white/[0.07] bg-[rgba(7,17,29,.78)] shadow-[0_24px_80px_-48px_rgba(0,0,0,.95)] backdrop-blur-xl;
+  }
+
+  .apex-input {
+    @apply rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-[#e7b949]/70 focus:ring-4 focus:ring-[#e7b949]/10;
+  }
+
+  .apex-gradient {
+    background:
+      radial-gradient(circle at 18% 8%, rgba(231, 185, 73, 0.12), transparent 28rem),
+      radial-gradient(circle at 72% 22%, rgba(0, 167, 255, 0.13), transparent 30rem),
+      linear-gradient(135deg, rgba(3, 10, 18, 0.96), rgba(1, 6, 12, 0.98));
+  }
+
+  .apex-gold-button {
+    @apply inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-[#f7d36d] to-[#b98522] px-5 py-3 text-sm font-bold text-[#100b02] shadow-[0_14px_32px_-20px_rgba(231,185,73,.9)] transition hover:brightness-110 focus-visible:ring-4 focus-visible:ring-[#e7b949]/25;
+  }
+
+  .apex-ghost-button {
+    @apply inline-flex items-center justify-center rounded-lg border border-[#e7b949]/35 bg-transparent px-5 py-3 text-sm font-semibold text-[#f2c85b] transition hover:bg-[#e7b949]/10 focus-visible:ring-4 focus-visible:ring-[#e7b949]/20;
   }
 }

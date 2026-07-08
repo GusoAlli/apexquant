@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "portfolio": "المحفظة",
+    "liveTrades": "الصفقات المباشرة",
+    "trading": "التداول",
+    "aiSignals": "إشارات الذكاء الاصطناعي",
+    "strategies": "الاستراتيجيات",
+    "engine": "المحرك",
+    "backtest": "الاختبار الخلفي",
+    "analytics": "التحليلات",
+    "market": "السوق",
+    "accounts": "الحسابات",
+    "fundingFee": "رسوم التمويل",
+    "apiKeys": "مفاتيح API",
+    "subscription": "الاشتراك",
+    "notifications": "الإشعارات",
+    "settings": "الإعدادات",
+    "bot": "البوت",
+    "riskManagement": "إدارة المخاطر",
+    "signOut": "تسجيل الخروج"
+  },
+  "navGroup": {
+    "intelligence": "الذكاء",
+    "exchange": "البورصة",
+    "forexCfd": "فوركس / CFD",
+    "account": "الحساب"
+  },
+  "mode": {
+    "exchange": "بورصة",
+    "forex": "فوركس",
+    "cryptoExchange": "بورصة العملات",
+    "forexCfd": "فوركس / CFD"
+  },
+  "topbar": {
+    "marketOpen": "السوق مفتوح",
+    "marketClosed": "السوق مغلق",
+    "profileSettings": "الملف الشخصي والإعدادات",
+    "subscriptionBilling": "الاشتراك والفواتير",
+    "signOut": "تسجيل الخروج",
+    "language": "اللغة",
+    "notifications": "الإشعارات"
+  },
+  "marketing": {
+    "platform": "المنصة",
+    "products": "المنتجات",
+    "pricing": "الأسعار",
+    "performance": "الأداء",
+    "resources": "الموارد",
+    "login": "تسجيل الدخول",
+    "getStarted": "ابدأ الآن",
+    "profile": "الملف الشخصي"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "loading": "جار التحميل…",
+    "error": "خطأ",
+    "refresh": "تحديث",
+    "comingSoon": "قريباً",
+    "running": "يعمل",
+    "stopped": "متوقف",
+    "enabled": "مفعّل",
+    "disabled": "معطّل",
+    "connect": "اتصال",
+    "disconnect": "قطع الاتصال",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "next": "التالي",
+    "submit": "إرسال",
+    "search": "بحث",
+    "filter": "تصفية",
+    "all": "الكل",
+    "buy": "شراء",
+    "sell": "بيع",
+    "noData": "لا توجد بيانات",
+    "learnMore": "اعرف المزيد",
+    "upgradeNow": "ترقية الآن",
+    "institutional": "مؤسسي"
+  }
+}

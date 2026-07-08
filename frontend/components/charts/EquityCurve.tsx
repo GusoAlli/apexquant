@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { createChart, LineSeries, type IChartApi, type LineData } from "lightweight-charts";
+import { PremiumCard, SectionHeader } from "@/components/ui/premium-card";
 
 const seriesData: LineData[] = [
   { time: "2025-05-01", value: 10500 },
@@ -28,21 +29,21 @@ export default function EquityCurve() {
       width: chartContainerRef.current.clientWidth,
       height: 320,
       layout: {
-        background: { color: "#0f172a" },
+        background: { color: "transparent" },
         textColor: "#cbd5e1",
       },
       grid: {
-        vertLines: { color: "rgba(148, 163, 184, 0.15)" },
-        horzLines: { color: "rgba(148, 163, 184, 0.1)" },
+        vertLines: { color: "rgba(255, 255, 255, 0.04)" },
+        horzLines: { color: "rgba(255, 255, 255, 0.05)" },
       },
-      rightPriceScale: { borderColor: "rgba(148, 163, 184, 0.15)" },
-      timeScale: { borderColor: "rgba(148, 163, 184, 0.15)" },
+      rightPriceScale: { borderColor: "rgba(255, 255, 255, 0.06)" },
+      timeScale: { borderColor: "rgba(255, 255, 255, 0.06)" },
       crosshair: { mode: 1 },
       localization: { dateFormat: "dd MMM" },
     });
 
     const lineSeries = chart.addSeries(LineSeries, {
-      color: "#fbbf24",
+      color: "#3B82F6",
       lineWidth: 3,
       priceLineVisible: false,
     });
@@ -63,22 +64,19 @@ export default function EquityCurve() {
   }, []);
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-[0_16px_50px_-35px_rgba(0,0,0,0.8)]">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Performance Overview</p>
-          <p className="mt-2 text-xs text-slate-500">This month</p>
-        </div>
-        <button className="rounded-2xl bg-white/5 px-3 py-2 text-sm text-white transition hover:bg-white/10">
-          View
-        </button>
-      </div>
-      <div ref={chartContainerRef} className="mt-6 h-[320px] w-full" />
+    <PremiumCard className="p-5">
+      <SectionHeader
+        eyebrow="Performance"
+        title="Large Equity Curve"
+        description="Net exposure adjusted equity across all connected accounts."
+        action={<span className="rounded-full border border-blue-400/20 bg-blue-500/10 px-3 py-1 text-xs text-blue-300">This month</span>}
+      />
+      <div ref={chartContainerRef} className="mt-6 h-[320px] w-full rounded-lg bg-[#07090d]/70" />
       <div className="mt-4 grid grid-cols-3 gap-4 text-xs text-slate-400">
         <span>01 May</span>
         <span>15 May</span>
         <span>28 May</span>
       </div>
-    </div>
+    </PremiumCard>
   );
 }

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
+import SubscriptionGuard from "@/components/dashboard/SubscriptionGuard";
+import OnboardingGuard from "@/components/dashboard/OnboardingGuard";
+import DashboardClientProviders from "@/components/providers/DashboardClientProviders";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -12,11 +16,20 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="mx-auto flex min-h-screen max-w-[1600px] gap-6 px-4 py-6 xl:px-8">
-        <Sidebar />
-        <main className="flex-1">{children}</main>
-      </div>
-    </div>
+    <DashboardClientProviders>
+      <OnboardingGuard>
+        <div className="flex h-screen flex-col overflow-hidden bg-[#060b14] text-slate-100">
+          <Topbar variant="dashboard" />
+          <div className="flex flex-1 overflow-hidden">
+            <Sidebar />
+            <main className="flex-1 overflow-y-auto">
+              <div className="p-4 sm:p-5">
+                <SubscriptionGuard>{children}</SubscriptionGuard>
+              </div>
+            </main>
+          </div>
+        </div>
+      </OnboardingGuard>
+    </DashboardClientProviders>
   );
 }

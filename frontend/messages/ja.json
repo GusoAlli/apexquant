@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "portfolio": "ポートフォリオ",
+    "liveTrades": "ライブトレード",
+    "trading": "トレーディング",
+    "aiSignals": "AIシグナル",
+    "strategies": "ストラテジー",
+    "engine": "エンジン",
+    "backtest": "バックテスト",
+    "analytics": "アナリティクス",
+    "market": "マーケット",
+    "accounts": "アカウント",
+    "fundingFee": "資金調達料",
+    "apiKeys": "APIキー",
+    "subscription": "サブスクリプション",
+    "notifications": "通知",
+    "settings": "設定",
+    "bot": "ボット",
+    "riskManagement": "リスク管理",
+    "signOut": "サインアウト"
+  },
+  "navGroup": {
+    "intelligence": "インテリジェンス",
+    "exchange": "取引所",
+    "forexCfd": "FX / CFD",
+    "account": "アカウント"
+  },
+  "mode": {
+    "exchange": "取引所",
+    "forex": "FX",
+    "cryptoExchange": "暗号資産取引所",
+    "forexCfd": "FX / CFD"
+  },
+  "topbar": {
+    "marketOpen": "市場オープン",
+    "marketClosed": "市場クローズ",
+    "profileSettings": "プロフィールと設定",
+    "subscriptionBilling": "サブスクリプションと請求",
+    "signOut": "サインアウト",
+    "language": "言語",
+    "notifications": "通知"
+  },
+  "marketing": {
+    "platform": "プラットフォーム",
+    "products": "製品",
+    "pricing": "料金",
+    "performance": "パフォーマンス",
+    "resources": "リソース",
+    "login": "ログイン",
+    "getStarted": "始める",
+    "profile": "プロフィール"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "キャンセル",
+    "loading": "読込中…",
+    "error": "エラー",
+    "refresh": "更新",
+    "comingSoon": "近日公開",
+    "running": "実行中",
+    "stopped": "停止",
+    "enabled": "有効",
+    "disabled": "無効",
+    "connect": "接続",
+    "disconnect": "切断",
+    "delete": "削除",
+    "edit": "編集",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "submit": "送信",
+    "search": "検索",
+    "filter": "フィルター",
+    "all": "すべて",
+    "buy": "買い",
+    "sell": "売り",
+    "noData": "データがありません",
+    "learnMore": "詳細を見る",
+    "upgradeNow": "今すぐアップグレード",
+    "institutional": "機関投資家向け"
+  }
+}
